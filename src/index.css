@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-sage-50: #f4f6f1;
+  --color-sage-100: #e7ece1;
+  --color-sage-200: #d1dac5;
+  --color-sage-300: #b1bd9d;
+  --color-sage-400: #8c9b74;
+  --color-sage-500: #6B7A52; /* TAS Agro Green */
+  --color-sage-600: #556241;
+  --color-sage-700: #444e34;
+  --color-sage-800: #363e2a;
+  --color-sage-900: #2b3222;
+
+  --color-earth-50: #F6F4EF; /* TAS Off-white */
+  --color-earth-100: #eeebe3;
+  --color-earth-200: #e1ddd1;
+  --color-earth-300: #d1c9b8;
+  --color-earth-400: #a3957a;
+  --color-earth-500: #F6F4EF;
+
+  --color-gold: #C5A059; /* TAS Matte Gold */
+  --color-copper: #5A4634; /* TAS Coffee Brown */
+}
+
+@layer base {
+  body {
+    @apply bg-earth-50 text-sage-900 antialiased font-sans overflow-x-hidden;
+  }
+}
+
+.glass {
+  @apply bg-white/40 backdrop-blur-md border border-white/20;
+}
+
+.organic-shadow {
+  box-shadow: 0 10px 30px -10px rgba(123, 142, 106, 0.15);
+}

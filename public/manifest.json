@@ -1,0 +1,18 @@
+{
+  "name": "Tas Grãos | Nutrição Natural",
+  "short_name": "Tas Grãos",
+  "description": "Loja premium mobile-first de nutrição e produtos naturais com estética orgânica e clean.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefdfb",
+  "theme_color": "#7b8e6a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/8205/8205794.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
