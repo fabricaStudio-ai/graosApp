@@ -47,6 +47,7 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
     path
   };
   console.error('Firestore Error: ', JSON.stringify(errInfo));
+  throw error; // Permite que o chamador saiba que falhou
   // Do not throw the error globally, just log it, so that app can recover gracefully.
 }
 

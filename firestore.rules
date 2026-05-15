@@ -1,8 +1,64 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userRole() {
+      return isSignedIn()
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role
+        : null;
+    }
+
+    function isManager() {
+      return userRole() == 'manager';
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow get, list: if isOwner(userId) || isManager();
+      allow update, delete: if isOwner(userId) || isManager();
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isManager();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow create, update, delete: if isManager();
+    }
+
+    match /coupons/{couponId} {
+      allow read: if true;
+      allow create, update, delete: if isManager();
+    }
+
+    match /partners/{partnerId} {
+      allow read: if true;
+      allow create, update, delete: if isManager();
+    }
+
+    match /transactions/{transactionId} {
+      allow read, list: if isManager();
+      allow create, update, delete: if isManager();
+    }
+
+    match /orders/{orderId} {
+      allow create: if isSignedIn() && request.resource.data.customerId == request.auth.uid;
+      allow get, list: if isManager() || (isSignedIn() && resource.data.customerId == request.auth.uid);
+      allow update, delete: if isManager();
+    }
+
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }
